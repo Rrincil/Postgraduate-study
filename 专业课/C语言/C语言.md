@@ -41,7 +41,10 @@ int main(){
 * <span style="color:red;font-weight:800">在输出时\0不显示----'\0'的ASSIC码的值就是0
 * <span style="color:red;font-weight:800">不能把字符串常量赋值给字符型变量
 ```c
-
+#include <stdio.h>
+int main(){
+	printf("name=%s","Rrincil");
+}
 ```
 ### 2.1.3 整型变量的不同进制表示
 #### 1 进制转换
@@ -98,8 +101,47 @@ int main(){
 - 空类型（无值类） void
 # 三、输入输出
 ## (1). scanf("%d%d",&a,&b);getchar()输入
+- 混合输入时在%c前加空格
 ```c
-
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+//	int x;
+//	float y;
+//	int z;
+//	scanf("%d,%f",&x,&y);
+//	z = (int)(x+y);
+//	printf("%d\n",z);
+//	printf("保留两位小数==%.2f",x+y);
+	//system("pause");//暂停程序
+	
+	
+	/**
+	*scanf的匹配机制：在读取整型数，浮点数，字符串时会忽略\n(回车符)，空格符等
+	*因此 j获取的是\n，而z可以获取值 解决办法：每次scanf %c前加一个空格
+	* scanf的返回值是读取变量的数量，发生错误时返回	EOF-----#define EOF (-1)
+	*/
+	//当缓冲区为空的时候，scanf()会阻塞
+	int i,z;
+	char j;
+	scanf("%d",&i);
+	printf("%d\n",i);
+	//scanf("%c",&j);
+	scanf(" %c",&j);//%c前加空格
+	printf("j=%c",j);//读取了\n
+	scanf("%d",&z);
+	printf("%d",z);//可以获取z的值
+	
+	
+	
+	//循环读取 在行首按三次或一次（看版本）ctr+z会出错，ctr+c终止; rewind(stdin)：清空缓冲区
+	int x;
+	while(rewind(stdin),scanf("%d",&x)!=EOF){ //输入字符a会疯狂打印--读取的a不为整数，此时scanf的返回值是0!=-1会一直打印，陷入死循环
+		printf("%d\n",x);
+		
+	}
+	return 0;
+}
 ```
 ## (2) printf();putchar()输出
 ```c
@@ -108,3 +150,14 @@ int main(){
    printf("%d",a);//%d以十进制输出
 }
 ```
+# 运算符和表达式
+* 一切非0值都是真
+- 数字转字符串+48输出
+- print("%d",a+48)
+## 算数运算符
+* +-*/%
+## 关系运算符
+> >= <= == !=
+## 逻辑运算符
+*  && || !
+
