@@ -1,6 +1,8 @@
 #include <stdio.h>
 int main(){
 	int a = 90;
+	short h0 = 3;
+    long hh = 1;
 	float b = 7.2000;
 	float c = 3e-3;//3*10^-3
 	float d = 3e3;//3*10^3 e代表10的幂次

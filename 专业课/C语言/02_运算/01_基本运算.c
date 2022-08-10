@@ -1,6 +1,8 @@
 #include <stdio.h>
 int main(){
 	int h = 5;
+	short h0 = 3;
+	long hh = 1;
 	float h1 = 5.0;
 	float h2 = h/2;//2.0
 	float h3 = h1/2;//2.5
@@ -13,6 +15,6 @@ int main(){
 		printf("false");
 	}
 	
-	//判断浮点数是否相等
-	//两数只差是否小于一个精度例如小于0.0001
+	//
+
 }

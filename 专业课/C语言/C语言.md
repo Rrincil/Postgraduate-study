@@ -9,7 +9,7 @@
 * 标识符：字母数字+下划线；第一个字符不能是数字；不能是关键字
 * <span style="color:red;font-weight:800">变量区分大小写</span>
 ## 2.1 基本数据类型
-1. 整型 int
+1. 整型 int short long
 2. 字符型 char
 3. 实型（浮点型）
    1. 单精度 float
@@ -152,12 +152,38 @@ int main(){
 ```
 # 运算符和表达式
 * 一切非0值都是真
+* 0为false,1为true
 - 数字转字符串+48输出
 - print("%d",a+48)
 ## 算数运算符
 * +-*/%
+```c
+#include <stdio.h>
+int main(){
+	int h = 5;
+short h0 = 3;
+long hh = 1;
+float h1 = 5.0;
+float h2 = h/2;//2.0
+float h3 = h1/2;//2.5
+printf("%f\n%f\n",h2,h3);
+}
+```
 ## 关系运算符
+* 关系运算符不能连续判断例如0<a<2是错的，应该为a>0&&a<1
 > >= <= == !=
+```c
+#include <stdio.h>
+int main(){
+	int a = 18;
+	if(a<=10&&a>=2){
+		printf("ok");
+	}else{
+		printf("false");
+	}
+}
+```
 ## 逻辑运算符
-*  && || !
+* &&与； ||或； !非
+* 逻辑表达式只有真假
 
