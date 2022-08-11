@@ -150,11 +150,13 @@ int main(){
    printf("%d",a);//%d以十进制输出
 }
 ```
-# 运算符和表达式
+# 四、运算符和表达式
 * 一切非0值都是真
 * 0为false,1为true
 - 数字转字符串+48输出
 - print("%d",a+48)
+- 以下优先级从高到底
+- 逻辑与高于逻辑非
 ## 算数运算符
 * +-*/%
 ```c
@@ -186,4 +188,86 @@ int main(){
 ## 逻辑运算符
 * &&与； ||或； !非
 * 逻辑表达式只有真假
+```c
+#include <stdio.h>
+int main(){
+   int a =5;
+   printf("%d",!a);//值为0--非0常数的非为0
+   printf("%d",!!a);值为1
 
+}
+```
+## 赋值运算符
+* 表达式的值存在与运算过程中
+* 等号左边只能放变量
+```c
+#include <stdio.h>
+int main(){
+   int a;
+   a +=3;
+   a = a+3;
+   a /=3;
+   a *=3;
+}
+
+```
+## 条件运算符
+## 逗号运算符
+* （（表达式1），（表达式2））最后一个表达式为真，则逗号表达式为真，反之为假---while,for循环中
+```c
+#include <stdio.h>
+int main(){
+   int a = 2;
+   while((a%10==0),(a%2==0)){
+      printf("a是二的倍数");
+   }
+}
+```
+## 自增自减运算符
+* 单目运算符从右到左
+* 前加加，前减减直接先右后左计算
+* 后加加减减分成两步
+* j = a++先赋值再a自增1; j=++a a先自增1再赋值;
+```c
+#include <stdio.h>
+int main(){
+   int i; 
+   scanf("%d",&i);  //输入 i=2
+   int j1 = i++; //先增1再赋值
+   int j2 = ++i;//先赋值再增1
+   if(j1 > 0){
+      printf("j为正数");
+      printf("%d",j); //j=3
+   }else if(j2 >0){
+      printf("j为正数");
+      printf("%d",j);//j=2
+   }
+   while(i-- > 0){
+      j = --i;
+   }
+   printf("j为正数");
+   printf("%d",j);//j =1
+}
+```
+# 五、选择循环结构
+## 5.1 if 判断表达式
+* 99%放关系|逻辑表达式，1%直接放值
+* if else 就近原则配对（未加括号）
+## 5.2 while循环表达式
+* 注意死循环
+## 5.3 for循环表达式
+* for(int i=0;i<10;i++){}
+## 5.4 switch表达式
+```c
+#include <stdio.h>
+int main(){
+   int a =0;
+   switch(a):
+      case as
+}
+```
+## 5.5 continue语句
+* 结束本次<span style="color:red;font-weight:800;">循环</span>
+
+## 5.6 break语句
+* 结束<span style="color:red;font-weight:800;">循环</span>
