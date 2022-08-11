@@ -272,3 +272,13 @@ int main(){
 ## 5.6 break语句
 * <span style="color:red;font-weight:800;">终止循环</span>
 # 六、数组
+* 具有相同数据类型的数据
+* 在定义数组时，空间大小就确定下来了。
+* 数组下表从0开始
+* 使用过程中需要保留原始数据
+## 6.1 一维数组
+* 类型 数组名【<span style="color:red;font-weight:800;">常量表达式</span>】----int a[10]
+```c
+
+```
+## 6.1 一维数组
