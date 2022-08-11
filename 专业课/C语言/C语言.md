@@ -270,4 +270,5 @@ int main(){
 * 结束本次<span style="color:red;font-weight:800;">循环</span>
 
 ## 5.6 break语句
-* 结束<span style="color:red;font-weight:800;">循环</span>
+* <span style="color:red;font-weight:800;">终止循环</span>
+# 六、数组
