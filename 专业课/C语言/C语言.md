@@ -347,6 +347,7 @@ int main(){
 ```
 ### (1)scanf("%s")读取字符串
 * scanf("%s%s",a,b);会忽略空格
+* 不能输入带有空格的字符串
 * 输入时可以不用取地址，数组名就是首地址
 ```c
 #include <stdio.h>
@@ -358,7 +359,9 @@ printf("%s---%s",x,y);
 }
 ```
 ### (2)gets("%s")读取字符串 puts输出字符串
-* 输入输出带空格的字符串
+* 输入带空格的一行字符串----'\n'换成'\0'结束
+* gets(字符数组名);------char *gets(*str)
+* 字符数组的数组名中存放的是字符数组的起始地址（值的类型为字符指针类型）
 ```c
 #include <stdio.h>
 int main(){
@@ -393,6 +396,35 @@ int main(){
 	printf("%s---%s\n",x,y);
 	printArray(x);
 	return 0; //main函数的返回值
+}
+```
+### （3）字符数组操作函数
+* strlen strcpy strcmp strcat等
+```c
+#include <stdio.h>
+#include <string.h>  //使用字符串函数的头文件
+int main(){
+	char a[10] = "hello";
+	char b[10];
+	char c[10] = "hollo";
+	//字符长度 strlen(a)
+	printf("%d\n",strlen(a)); 
+	
+	//字符串拷贝 strcpy(to,from)
+	strcpy(b,a); 
+	strcpy(c,"nihao");
+	puts(b);
+	puts(c);
+	
+	// int  = strcmp(a,b) 判断两个字符串对应位置 ASCII值是否相等（一直比较到不相等的时候），如果相等返回0，不相等（1）a>b返回1;(2)a<b返回-1
+	int x  = strcmp(a,b);  
+	int y  = strcmp(a,c);
+	int y2 = strcmp("ssxx","ssxo");
+	printf("x==%d,y==%d,y2==%d\n",x,y,y2);
+	
+	//strcat(a,b) 拼接字符串 把b字符串拼接到a上----注意数组长度
+	strcat(a,c);
+	printf("%s",a);
 }
 ```
 ## 6.2 浮点型型数组
