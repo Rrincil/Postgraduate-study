@@ -276,9 +276,57 @@ int main(){
 * 在定义数组时，空间大小就确定下来了。
 * 数组下表从0开始
 * 使用过程中需要保留原始数据
+* 数组名中存放的是数组的起始地址
 ## 6.1 一维数组
 * 类型 数组名【<span style="color:red;font-weight:800;">常量表达式</span>】----int a[10]
 ```c
+#include <stdio.h>
+#define N 3
+int main(){
+   int a[10];
+   int b[N] = {1,2,3};
+   int c[10] = {0};//初始化为全为0的数组
+   int d[] = {0,1,4,5};//编译器自动推断 数组的长度（数组的空间大小）
+   for(int i=0;i<a.length();i++){
+      printf("%d",a[i]);
+   }
 
+}
 ```
-## 6.1 一维数组
+### (1)访问越界问题
+* 访问了不属于你自己的空间，容易把其他值改掉
+```c
+#include <stdio.h>
+#define N 3
+int main(){
+   //访问越界
+   int j = 10;
+   int i[2] = {0};
+   int x = 3;
+   //微软在内存存储中【栈的形式】 有8字节的保护空间，所以赋值两次
+   i[3] = 2;
+   i[4] = 5;
+   
+   i[5] = 22;
+   printf("j=%d",j); //打印j=22
+}
+```
+### (1)数组传递
+```c
+#include <stdio.h>
+#define N 3
+//数组传递
+void printArray(int a[],int len){
+	for(int i=0;i<len;i++){
+		printf("a[%d]=%d\n",i,a[i]);
+	}
+}
+int main(){
+   int a[10]; //有残留的内存数值
+   int b[N] = {1,2,3};
+   int c[10] = {0};//初始化为全为0的数组
+   int d[] = {0,1,4,5};//编译器自动推断 数组的长度（数组的空间大小）
+   printArray(a,9);
+}
+```
+## 6.2 字符型数组
