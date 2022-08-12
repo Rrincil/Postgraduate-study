@@ -322,7 +322,7 @@ void printArray(int a[],int len){
 	}
 }
 int main(){
-   int a[10]; //有残留的内存数值
+   int a[10]; //有残留的内存数值-脏数据   微软中为 cc cc cc cc
    int b[N] = {1,2,3};
    int c[10] = {0};//初始化为全为0的数组
    int d[] = {0,1,4,5};//编译器自动推断 数组的长度（数组的空间大小）
@@ -330,3 +330,69 @@ int main(){
 }
 ```
 ## 6.2 字符型数组
+* char a[3] ={0};
+* 用来存储字符串  char a[5] = "hello";
+* 以字符串定义的 输出用%s
+* char c[10] 最多存9个字符 最有一个是结束符'\0'
+```c
+#include <stdio.h>
+int main(){
+	char a[3] ={0,'a','2'};
+	printf("%c\n%c\n",a[1],a[2]);
+	//初识化字符串
+	char b0[3] = {'h','o','w'};
+	char b[8] = "hello";
+	printf("a=%s\nb=%s\n",b0,b);
+}
+```
+### (1)scanf("%s")读取字符串
+* scanf("%s%s",a,b);会忽略空格
+* 输入时可以不用取地址，数组名就是首地址
+```c
+#include <stdio.h>
+int main(){
+//读取字符串
+char x[10],y[10];
+scanf("%s%s",x,y);
+printf("%s---%s",x,y);
+}
+```
+### (2)gets("%s")读取字符串 puts输出字符串
+* 输入输出带空格的字符串
+```c
+#include <stdio.h>
+int main(){
+//读取字符串
+char x[10],y[10];
+scanf("%s%s",x,y);
+printf("%s---%s",x,y);
+}
+```
+### （3）字符数组的传递
+```c
+#include <stdio.h>
+void printArray(char a[]){
+	printf("%s\n",a);
+	int i = 0; //int i,j = 0; 会抛出异常
+	int j = 0;
+	while(a[i]!='\0'){ //while(a[i])||while(a[i]!=0)   '/0' = 0 非0就为真
+		printf("%c\n",a[i]);
+		i++;
+	}
+	//改变字符 大写变小写+32 小写变大写-32
+	while(a[j]!=0){
+		a[j] -=32;
+		printf("%c",a[j]);
+		j++;
+	}
+}
+int main(){
+	//读取字符串
+	char x[10],y[10];
+	scanf("%s%s",x,y);
+	printf("%s---%s\n",x,y);
+	printArray(x);
+	return 0; //main函数的返回值
+}
+```
+## 6.2 浮点型型数组

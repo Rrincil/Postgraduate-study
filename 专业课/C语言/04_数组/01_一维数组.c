@@ -7,7 +7,7 @@ void printArray(int a[],int len){
 	}
 }
 int main(){
-   int a[10];
+   int a[10]; //有残留的内存数值
    int b[N] = {1,2,3};
    int c[10] = {0};//初始化为全为0的数组
    int d[] = {0,1,4,5};//编译器自动推断 数组的长度（数组的空间大小）
