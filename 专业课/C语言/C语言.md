@@ -334,6 +334,7 @@ int main(){
 * 用来存储字符串  char a[5] = "hello";
 * 以字符串定义的 输出用%s
 * char c[10] 最多存9个字符 最有一个是结束符'\0'
+* char a[100];//char a2= a; <span style="color:red;font-weight:800;">字符串数组不能直接赋值,for循环赋值</span>
 ```c
 #include <stdio.h>
 int main(){
@@ -371,7 +372,22 @@ scanf("%s%s",x,y);
 printf("%s---%s",x,y);
 }
 ```
-### （3）字符数组的传递
+### （4）gets()与fgets的区别
+* fgets(a，sizeof(a),stdin);--fgets(字符串数组名，字节大小，标准输入)
+* fgets除了读取空格之外还会读取\n，并把\n放到字符数组中
+* 输入的时候把\n换成\0
+```c
+#include <stdio.h>
+int main(){
+    int a[100];
+    fgets(a,sizeof(a),stdin);
+    int len = strlen(a);
+    a[len-1] = '\0';//或者a[len-1] = 0；--0的ASCII码是\0
+    puts(a);
+    return 0;
+}
+```
+### （5）字符数组的传递
 ```c
 #include <stdio.h>
 void printArray(char a[]){
@@ -398,7 +414,7 @@ int main(){
 	return 0; //main函数的返回值
 }
 ```
-### （3）字符数组操作函数
+### （6）字符数组操作函数
 * strlen strcpy strcmp strcat等
 ```c
 #include <stdio.h>
