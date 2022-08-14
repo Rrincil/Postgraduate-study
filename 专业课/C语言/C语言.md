@@ -258,6 +258,7 @@ int main(){
 * 注意死循环
 ## 5.3 for循环表达式
 * for(int i=0;i<10;i++){}
+* for循环中三个表达式都可以省略
 ## 5.4 switch表达式
 ```c
 #include <stdio.h>
@@ -578,7 +579,6 @@ int main(){
 	
 }
 ```
-### 2. 二级指针的传递 （了解c++的引用）
 ## 7.3 指针的基本使用
 ```c
 #include <stdio.h>
@@ -710,4 +710,84 @@ int main(){
 ## 7.8 字符指针与字符数组的初始化
 * char *p="hello"与char a[10]="hello"的区别
 ```c
+#include <stdio.h>
+int main(){
+	char *p="hello"; //把字符串常量区中的"hello"常量的首地址赋值给p
+	char a[10]="hello";//等价于 strcpy(p,"hello") 把hello每个字符放在栈空间，可以对其读写
+	a[0] = 'H';
+	printf("%c\n",a[0]);
+	printf("%c\n",p[0]);
+//	p[0] = 'H'; //不可以对字符串常量区的字符进行修改------抛出异常
+	p = "word"; //将字符串word的地址赋值给p
+//	a = "word";//非法
+	
+	printf("%c\n",a[0]);
+	printf("%c\n",p[0]);	
+	return 0;
+	
+}
+```
+## 7.9 二级指针
+- 只服务于一级指针的传递和偏移
+### （1）. 二级指针的传递 （了解c++的引用）
+* 二级指针：存一级指针本身内存起始地址：用来方便查找一级指针
+```c
+#include <stdio.h>
+void change(int **x,int *y){
+	
+	*x = y;
+	
+}
+int main(){
+	 int a =10;
+	 int *p = &a;
+	 int **p2 = &p; //存一级指针本身内存起始地址：用来方便查找一级指针
+	 
+	 int i = 1;
+	 int j = 2;
+	 int *p0 = &i;
+	 int *p1 = &j;
+	 printf("*p0=%d,*p1=%d\n",*p0,*p1);
+	 
+	 change(&p0,p1);//把p0在内存中的地址传入再*解引用 拿到p0中存放的地址，再改变为pi中存放的地址 
+	 printf("*p0=%d,*p1=%d",*p0,*p1);
+	 
+}
+```
+# 八、函数
+* 若大的程序分为若干个程序模块
+* 使用子程序实现模块的功能，而子程序用函数来实现
+## 8.1 函数的声明、定义和调用
+* 主函数调用子函数
+* 子函数之间可以相互调用
+* 同一函数可以被多个或者一个函数调用
+## 8.2 函数的嵌套调用
+## 8.3 函数递归调用
+```c
+#include <stdio.h>
+void peint(int n,int m){
+	/**
+	 * 用递归计算n!
+	 **/
+	m = m*n;
+	n--;
+	if(n>0){
+		peint(n,m);
+	}else{
+		printf("%d",m);
+	}
+}
+int main(){
+	int n;
+	int m =1;
+	scanf("%d",&n);
+	peint(n,m);
+	
+}
+```
+## 8.4 变量及函数的作用域
+### （1）全局变量和局部变量
+* 函数外定义的叫全局变量
+```c
+
 ```
