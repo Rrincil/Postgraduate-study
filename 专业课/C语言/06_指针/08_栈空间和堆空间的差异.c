@@ -8,8 +8,13 @@ char * printchar(){
 char* printchar2(){
 	//在堆空间中动态申请内存
 	char *p;
-	p = (char *)malloc(20);
-	strcpy(p,"hello Rrincil");
+	int a;
+	scanf("%d",&a);
+	p = (char *)malloc(a);
+//	strcpy(p,"hello Rrincil");
+	char c;
+	scanf("%c",&c); //去除缓冲区中的\n
+	gets(p);
 	puts(p);
 	return p;
 }
