@@ -707,3 +707,7 @@ int main(){
 	return 0;
 }
 ``` 
+## 7.8 字符指针与字符数组的初始化
+* char *p="hello"与char a[10]="hello"的区别
+```c
+```

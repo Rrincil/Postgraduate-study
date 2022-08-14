@@ -14,7 +14,7 @@ char* printchar2(){
 //	strcpy(p,"hello Rrincil");
 	char c;
 	scanf("%c",&c); //去除缓冲区中的\n
-	gets(p);
+	gets(p);//不去除\n会直接读取缓冲区中的\n
 	puts(p);
 	return p;
 }
