@@ -103,6 +103,7 @@ int main(){
 # 三、输入输出
 ## (1). scanf("%d%d",&a,&b);getchar()输入
 - 混合输入时在%c前加空格
+- %s 于%c读取的时候中间需要加 空格
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -790,4 +791,156 @@ int main(){
 * 函数外定义的叫全局变量
 ```c
 
+```
+# 九、结构体
+## 9.1 结构体的定义，引用和初始化
+1. 结构体的声明使用
+     * struct 结构体名 {成员列表};
+```c
+#include <stdio.h>
+struct student{ //结构体声明  【struct 结构体名 {结构体成员};】
+	int num; //结构体成员
+	char name[20];
+	char sex;
+}; //结构体的声明加;  可以放在main()里面，外面都行
+int main(){
+	//结构体所占字节大小为28 !=4+20+1  因为内存存在对其  对其是为了提高cpu访问内存效率
+	printf("%d\n-",sizeof(struct student));
+	
+	/**
+	 * 1.结构体变量
+	 **/
+	struct student s= {20,"jdkjdk",'M'}; //定义,初始化结构体变量
+	//访问结构体成员  s.成员变量
+	printf("%d,%s,%c\n",s.num,s.name,s.sex); 
+	
+	/**
+	 *  2. 结构体数组的声明定义、使用
+	 * 
+	 **/
+	 struct student arr0[2] = {10,"tom",'M',20,"cat",'w'};
+	 
+	 struct student arr[3];
+//	 arr[0].name = "ddd";
+	  
+	 //读取结构体数组
+	 for(int i= 0 ;i<3;i++){
+	 	scanf("%d%s %c",&arr[i].num,arr[i].name,arr[i].sex); //%s 于%c读取的时候中间需要加 空格---混合输入%c前加空格
+	 	
+	 }
+	 for(int j = 0,k=0;j<3,k<2;j++,k++){
+	 	printf("num=%d name=%s sex=%c\n",arr0[j].num,arr0[j].name,arr0[j].sex);
+	 	printf("num=%d name=%s sex=%c\n",arr[j].num,arr[j].name,arr[j].sex);
+	 }
+}
+```
+## 9.2结构体指针
+* *运算符是 结构体变量.结构体成员 使用的
+* ->运算符 结构体定义的指针变量使用的
+```c
+#include <stdio.h>
+struct animal{
+	char name[10];
+	int num;
+	float weight;
+	
+};
+int main(){
+	/**
+	 * 1. 结构体指针
+	 **/
+	 struct animal cat ={"elefent",10,30};
+	 struct animal *p; //定义结构体指针
+	 p = &cat;
+	 printf("%d\n",(*p).num); //*p.num出错---因为优先级的问题 .与[]与()的优先级高于单目运算符，最高级
+	 printf("%s,%d,%.2f\n",(*p).name,(*p).num,(*p).weight);//(1)
+	 printf("%s,%d,%.2f\n",p->name,p->num,p->weight);//等同于（1）的写法
+	 
+	 /**
+	  * 2.结构体指针在结构体数组中的偏移
+	  **/
+	 struct animal arr0[2] = {"tom",10,60.2,"cat",20,68.5};
+	 p = arr0;//p指向arro数组的首地址
+	 int x;
+	 x = p->num++;  //num++ 先赋值 后自增1   p[0].num =10 = p->num = x; num再自增1 p->num = p[0].num = 11;
+	 printf("%d,%d\n",x,p->num);
+	 
+	 x = p++->num;  //p++先赋值 后自增1 x = p->num = p[0].num =11 =x; p->num = p+1->num = p[1].num = 20;
+	 printf("%d,%d",x,p->num);
+	 
+}
+```
+# 十、c++ 的引用 &
+```c
+#include <stdio.h>
+#include <stdlib.h>
+void change(int &x){  //& C++的引用
+	printf("%d\n",x);
+	x++;
+	printf("%d\n",x);
+}
+
+/**
+ * 1. 在C语言中
+ **/
+//void change(int *p){
+//	*p++;
+//}
+//int main(){
+//	int a = 10;
+//	change(&a);
+//}
+
+void change_y(int* &y){     //在子函数中操作y和主函数操作p一致  //change(类型 &y) 引用 调用的时候: 类型 p; change(p);
+	y = (int *)malloc(20);    //1. 加头文件<stdlib.h> 2.注意强制转换类型
+	y[0] = 7;
+}
+/**
+ * 2. 在C语言中  二级指针的使用
+ **/
+//void change_y(int **p){
+//	*p = (int *)malloc(20);
+//}
+//int main(){
+//	int *p = NULL;
+//	change_y(&p);
+//}
+
+int main(){
+	int a =10;
+	change(a);
+	printf("%d\n",a);
+	
+	//指针的转换
+	int *p = NULL;
+	change_y(p);
+	printf("%d\n",p[0]);
+}
+```
+# 十一、typedef的使用
+* (typedefine)----typedef
+* 使用typedef关键字给定义的结构体 起别名
+```c
+#include <stdio.h>
+/**
+ * 1. typedef的使用
+ **/
+typedef struct student{
+	char name[10];
+	int age;
+} stu, *stup;     //给结构体起别名 stu在声明使用的时候相当于struct student     stup在声明使用的时候等价于 struct student *
+int main(){
+	stu s = {"tom",22}; //stu s = {}---------struct student s ={};
+	puts(s.name);
+	
+
+	stup p; //stu p; ------stu *p-------struct student *p;
+	
+	p = &s;
+	printf("%s\n",p->name);
+	
+	stu s2[] = {"cat",11}; //定义结构体数组
+	p = s2;
+	printf("%d",p->age);
+}
 ```
