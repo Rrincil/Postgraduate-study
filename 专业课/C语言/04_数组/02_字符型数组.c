@@ -1,7 +1,7 @@
 #include <stdio.h>
 void printArray(char a[]){
 	printf("%s\n",a);
-	int i = 0; //int i,j = 0; 会抛出异常
+	int i = 0; //int i,j = 0; 会抛出异常，单独赋值
 	int j = 0;
 	while(a[i]!='\0'){ //while(a[i])||while(a[i]!=0)   '/0' = 0 非0就为真
 		printf("%c\n",a[i]);
@@ -14,10 +14,25 @@ void printArray(char a[]){
 		j++;
 	}
 }
+//初始化字符数组
+void InitAarray(int a[],int n){
+	for(int i=0;i<n;i++){
+		scanf("%c",&a[i]);
+	}
+}
+
+//初始化字符串数组
+void InitAarray2(int a[]){
+	gets(a);
+	puts(a);
+	scanf("%s",a);
+	printf("%s",a);
+}
+
 int main(){
 	char a[3] ={0,'a','2'};
 	printf("%c\n%c\n",a[1],a[2]);
-	//初识化字符串
+	//初始化字符串
 	char b0[3] = {'h','o','w'};
 	char b[8] = "hello";
 	printf("a=%s\nb=%s\n",b0,b);
