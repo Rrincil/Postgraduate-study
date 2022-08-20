@@ -7,7 +7,7 @@
  **/
  
  //输出二维数组
- void printArray(int x,int y, int a[][y]){
+ void printArray(int x,int y, int a[x][y]){
  	for(int i=0;i<x;i++){
  		for(int j=0;j<y;j++){
  			printf("%d ",a[i][j]);
@@ -36,7 +36,7 @@ int main(){
 	 * 1.写在一个{}中，自动按行分，
 	 **/
 	static int a0[2][3]; //static 修饰全为0
-	int a[4][30];//4个班级，每个班30个同学----初始化未赋值，随机数---残留值
+	int a[4][30];//4个班级，每个班30个同学----初始化未赋值，随机数---残留值*****未赋初始值不能省略一维大小
 	InitArray(30,a,4);
 	
 	int b[2][3] = {1,2,4}; //部分赋值----补零
